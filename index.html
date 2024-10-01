@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robotic Car Control</title>
+    <style>
+        button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Robotic Car Control</h1>
+    <button onclick="move('forward')">Forward</button>
+    <button onclick="move('backward')">Backward</button>
+    <button onclick="move('left')">Left</button>
+    <button onclick="move('right')">Right</button>
+    <button onclick="move('stop')">Stop</button>
+
+    <script>
+        const baseUrl = 'http://192.168.247.180'; // Replace with your Wemos D1 Mini IP address
+
+        function move(direction) {
+            fetch(`${baseUrl}/${direction}`)
+                .then(response => response.text())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
